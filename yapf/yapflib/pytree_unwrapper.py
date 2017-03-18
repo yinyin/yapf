@@ -34,6 +34,7 @@ from lib2to3.pgen2 import token as grammar_token
 from yapf.yapflib import pytree_utils
 from yapf.yapflib import pytree_visitor
 from yapf.yapflib import split_penalty
+from yapf.yapflib import style
 from yapf.yapflib import unwrapped_line
 
 
@@ -258,7 +259,8 @@ class PyTreeUnwrapper(pytree_visitor.PyTreeVisitor):
     self.DefaultNodeVisit(node)
 
   def Visit_testlist_gexp(self, node):  # pylint: disable=invalid-name
-    if _ContainsComments(node):
+    if (_ContainsComments(node) or
+        style.Get('SPLIT_ARGUMENTS_WHEN_COMMA_TERMINATED')):
       _DetermineMustSplitAnnotation(node)
     self.DefaultNodeVisit(node)
 

@@ -131,6 +131,8 @@ _STYLE_HELP = dict(
       The number of columns to use for indentation."""),
     JOIN_MULTIPLE_LINES=textwrap.dedent("""\
       Join short lines into one line. E.g., single line 'if' statements."""),
+    NO_SPLIT_BEFORE_DICT_VALUE=textwrap.dedent("""\
+      Never split before the dictionary value."""),
     SPACE_BETWEEN_ENDING_COMMA_AND_CLOSING_BRACKET=textwrap.dedent("""\
       Insert a space between the ending comma and closing bracket of a list,
       etc."""),
@@ -214,6 +216,7 @@ def CreatePEP8Style():
       INDENT_DICTIONARY_VALUE=False,
       INDENT_WIDTH=4,
       JOIN_MULTIPLE_LINES=True,
+      NO_SPLIT_BEFORE_DICT_VALUE=False,
       SPACE_BETWEEN_ENDING_COMMA_AND_CLOSING_BRACKET=True,
       SPACES_AROUND_POWER_OPERATOR=False,
       SPACES_AROUND_DEFAULT_OR_NAMED_ASSIGN=False,
@@ -323,6 +326,7 @@ _STYLE_OPTION_VALUE_CONVERTER = dict(
     INDENT_DICTIONARY_VALUE=_BoolConverter,
     INDENT_WIDTH=int,
     JOIN_MULTIPLE_LINES=_BoolConverter,
+    NO_SPLIT_BEFORE_DICT_VALUE=_BoolConverter,
     SPACE_BETWEEN_ENDING_COMMA_AND_CLOSING_BRACKET=_BoolConverter,
     SPACES_AROUND_POWER_OPERATOR=_BoolConverter,
     SPACES_AROUND_DEFAULT_OR_NAMED_ASSIGN=_BoolConverter,

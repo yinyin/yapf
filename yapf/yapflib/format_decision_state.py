@@ -141,6 +141,11 @@ class FormatDecisionState(object):
       # like it. So don't allow it unless forced to.
       return False
 
+    if (not must_split and
+        format_token.Subtype.DICTIONARY_VALUE in current.subtypes):
+      if style.Get('NO_SPLIT_BEFORE_DICT_VALUE'):
+        return False
+
     return current.can_break_before
 
   def MustSplit(self):
@@ -212,6 +217,9 @@ class FormatDecisionState(object):
     if (format_token.Subtype.DICTIONARY_VALUE in current.subtypes or
         (previous.is_pseudo_paren and previous.value == '(' and
          not current.is_comment)):
+      if style.Get('NO_SPLIT_BEFORE_DICT_VALUE'):
+        return False
+
       # Split before the dictionary value if we can't fit every dictionary
       # entry on its own line.
       if not current.OpensScope():
