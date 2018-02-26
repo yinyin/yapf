@@ -532,6 +532,9 @@ Knobs
 ``SPLIT_PENALTY_LOGICAL_OPERATOR``
     The penalty of splitting the line around the ``and`` and ``or`` operators.
 
+``TAB_WIDTH``
+    The number of spaces visually equivalent to a tab stop.
+
 ``USE_TABS``
     Use the Tab character for indentation.
 
