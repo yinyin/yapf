@@ -58,6 +58,20 @@ class Subtype(object):
   TYPED_NAME_ARG_LIST = 20
 
 
+def _TabModeVerticalAlignment(spaces):
+  style_type = style.Get('CONTINUATION_ALIGNMENT_TYPE').upper()
+  ts = style.Get('TAB_WIDTH')
+  if style_type == 'FIXED':
+    if spaces > 0:
+      return '\t' * style.Get('CONTINUATION_INDENT_WIDTH')
+    return ''
+  elif style_type == 'LESS':
+    return '\t' * int(spaces / ts)
+  elif style_type == 'MORE':
+    return '\t' * int((spaces + ts - 1) / ts)
+  return ' ' * spaces
+
+
 class FormatToken(object):
   """A wrapper around pytree Leaf nodes.
 
@@ -123,7 +137,10 @@ class FormatToken(object):
       indent_level: (int) The indentation level.
     """
     if style.Get('USE_TABS'):
-      indent_before = '\t' * indent_level + ' ' * spaces
+      if newlines_before > 0:
+        indent_before = '\t' * indent_level + _TabModeVerticalAlignment(spaces)
+      else:
+        indent_before = '\t' * indent_level + ' ' * spaces
     else:
       indent_before = (
           ' ' * indent_level * style.Get('INDENT_WIDTH') + ' ' * spaces)
