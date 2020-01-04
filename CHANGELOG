@@ -3,6 +3,9 @@
 # This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.29.1] UNRELEASED
+### Changed
+- `CONTINUATION_ALIGN_STYLE` with `FIXED` or `VALIGN-RIGHT` now works with
+  space indentation.
 ### Fixed
 - Honor a disable directive at the end of a multiline comment.
 - Don't require splitting before comments in a list when
